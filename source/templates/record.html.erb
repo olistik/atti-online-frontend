@@ -1,0 +1,62 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <a href="<%= "#{slugify(section)}/#{year}" %>">
+      <h1 class="center">2016</h1>
+    </a>
+  </div>
+</div>
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col"></div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <div class="index-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title mdl-card--expand mdl-card--border">
+        <h2 class="mdl-card__title-text">
+          Atto #<%= record["number"] %>
+        </h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        <b>Anno:</b> <%= record["year"] %><br />
+        <b>Proponente:</b> <%= record["author"] %><br />
+        <b>Oggetto:</b><br /><%= record["subject"] %><br />
+        <b>Data Inizio Pubb.:</b> <%= record["startingPublicationDate"] %><br />
+        <b>Data Fine Pubb.:</b> <%= record["endingPublicationDate"] %><br />
+        <b>Data Esec.:</b> <%= record["executionDate"] %>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+
+        <ul class="mdl-list mdl-list--download">
+        <% if record["documents"]["deepLink"] %>
+          <% record["documents"]["list"].each do |path| %>
+            <li class="mdl-list__item">
+              <% link_to path do %>
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                  <i class="material-icons">file_download</i>
+                </button>
+              <% end %>
+              <span class="mdl-list__item-primary-content mdl-list__item--left-margin">
+                <%= File.basename(path) %>
+              </span>
+            </li>
+          <% end %>
+        <% else %>
+          <% path = record["documents"]["fullPath"] %>
+          <li class="mdl-list__item">
+            <% link_to path do %>
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                <i class="material-icons">file_download</i>
+              </button>
+            <% end %>
+            <span class="mdl-list__item-primary-content mdl-list__item--left-margin">
+              <%= File.basename(path) %>
+            </span>
+          </li>
+        <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--2-col"></div>
+
+</div>

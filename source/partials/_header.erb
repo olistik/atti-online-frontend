@@ -1,0 +1,16 @@
+<header class="mdl-layout__header">
+  <div class="mdl-layout-icon">
+    <i class="material-icons">public</i>
+  </div>
+  <div class="mdl-layout__header-row">
+    <%= partial "partials/layout_title" %>
+    <div class="mdl-layout-spacer"></div>
+  </div>
+  <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+    <% data.database.keys.sort.each do |section| %>
+      <% url = slugify(section) %>
+      <% is_active = current_page.url.match(Regexp.new("^#{url}")) %>
+      <%= link_to section, url, {class: "mdl-layout__tab #{"is-active" if is_active}"} %>
+    <% end %>
+  </div>
+</header>

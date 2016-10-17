@@ -1,0 +1,9 @@
+<ul class="mdl-list">
+  <% years.keys.sort.reverse.each do |year| %>
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-primary-content">
+        <%= link_to year, "#{slugify(section)}/#{year}" %>
+      </span>
+    </li>
+  <% end %>
+</ul>
